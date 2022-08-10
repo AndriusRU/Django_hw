@@ -28,3 +28,30 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def get_recipe(name_dish, count_person):
+    recipe = DATA.get(name_dish)
+    my_recipe = dict()
+
+    for key, value in recipe.items():
+        my_recipe[key] = round(float(value) * count_person, 2)
+
+    return my_recipe
+
+def omlet(requests):
+    count = int(requests.GET.get('servings', 1))
+    context = dict()
+    context['recipe'] = get_recipe('omlet', count)
+    return render(requests, 'calculator/index.html', context)
+
+def pasta(requests):
+    count = int(requests.GET.get('servings', 1))
+    context = dict()
+    context['recipe'] = get_recipe('pasta', count)
+    return render(requests, 'calculator/index.html', context)
+
+def buter(requests):
+    count = int(requests.GET.get('servings', 1))
+    context = dict()
+    context['recipe'] = get_recipe('buter', count)
+    return render(requests, 'calculator/index.html', context)
