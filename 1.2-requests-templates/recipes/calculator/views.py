@@ -39,7 +39,7 @@ def get_recipe(name_dish, count_person):
     return my_recipe
 
 
-def recipe(requests, recipe, count = 1):
+def recipe(requests, recipe):
     count = int(requests.GET.get('servings', 1))
     context = dict()
     context['recipe'] = get_recipe(recipe, count)
