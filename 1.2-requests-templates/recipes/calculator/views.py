@@ -38,20 +38,29 @@ def get_recipe(name_dish, count_person):
 
     return my_recipe
 
-def omlet(requests):
+
+def recipe(requests, recipe, count = 1):
     count = int(requests.GET.get('servings', 1))
     context = dict()
-    context['recipe'] = get_recipe('omlet', count)
+    context['recipe'] = get_recipe(recipe, count)
     return render(requests, 'calculator/index.html', context)
 
-def pasta(requests):
-    count = int(requests.GET.get('servings', 1))
-    context = dict()
-    context['recipe'] = get_recipe('pasta', count)
-    return render(requests, 'calculator/index.html', context)
+# def omlet(requests):
+#     count = int(requests.GET.get('servings', 1))
+#     context = dict()
+#     context['recipe'] = get_recipe('omlet', count)
+#     return render(requests, 'calculator/index.html', context)
+#
+# def pasta(requests):
+#     count = int(requests.GET.get('servings', 1))
+#     context = dict()
+#     context['recipe'] = get_recipe('pasta', count)
+#     return render(requests, 'calculator/index.html', context)
+#
+# def buter(requests):
+#     count = int(requests.GET.get('servings', 1))
+#     context = dict()
+#     context['recipe'] = get_recipe('buter', count)
+#     return render(requests, 'calculator/index.html', context)
 
-def buter(requests):
-    count = int(requests.GET.get('servings', 1))
-    context = dict()
-    context['recipe'] = get_recipe('buter', count)
-    return render(requests, 'calculator/index.html', context)
+
