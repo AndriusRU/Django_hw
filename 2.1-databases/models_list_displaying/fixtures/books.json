@@ -16,5 +16,23 @@
       "author": "Джордж Оруэл",
       "pub_date": "2016-12-06"
     }
+  },
+  {
+    "model": "books.book",
+    "pk": 3,
+    "fields": {
+      "name": "Вий",
+      "author": "Н.В. Гоголь",
+      "pub_date": "2016-12-06"
+    }
+  },
+  {
+    "model": "books.book",
+    "pk": 4,
+    "fields": {
+      "name": "Медный всадник",
+      "author": "А.С. Пушкин",
+      "pub_date": "2017-10-06"
+    }
   }
 ]
