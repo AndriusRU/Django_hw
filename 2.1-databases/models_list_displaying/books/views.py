@@ -20,16 +20,14 @@ def books_date_view(request, date):
     dict_content = {content[i]: i + 1 for i in range(0, len(content))}
 
 
-    page_number = dict_content.get(date, 0)
+    page_number = dict_content.get(date, 1)
     print(page_number)
     paginator = Paginator(content, 1)
     page = paginator.get_page(page_number)
+    print(page.paginator)
 
-    context['page'] = page.object_list
-
-    print(page)
-    print(page.has_previous())
-    print(page.has_next())
-    print(date)
+    context['page'] = page
+    context['dates'] = {value: key for key, value in dict_content.items()}
+    print(context)
 
     return render(request, template, context)

@@ -18,10 +18,18 @@
         </div>
 
         {% if page.has_previous %}
-            <a class="button button-primary" href="{{ page.previous_page_number }}">{{ page.previous_page_number }}</a>
+            {% for key, value in dates.items %}
+                {% if key == page.previous_page_number %}
+                    <a href="/books/{{ value }}">< {{ value }}</a>
+                {% endif %}
+            {% endfor%}
         {% endif %}
         {% if page.has_next %}
-            <a class="button button-primary" href="{{ page.next_page_number }}">{{ page.next_page_number }}</a>
+            {% for key, value in dates.items %}
+                {% if key == page.next_page_number %}
+                    <a href="/books/{{ value }}">{{ value }} ></a>
+                {% endif %}
+            {% endfor%}
         {% endif %}
     </div>
 {% endblock %}
