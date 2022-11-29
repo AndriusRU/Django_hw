@@ -12,13 +12,18 @@ Content-Type: application/json
 }
 
 ###
-
 # получение продуктов +
 GET {{baseUrl}}/products/
 Content-Type: application/json
 
-###
 
+###
+# Получение продуктов постранично
+GET {{baseUrl}}/products/?page=1
+Content-Type: application/json
+
+
+###
 # обновление продукта +
 PATCH {{baseUrl}}/products/4/
 Content-Type: application/json
@@ -28,42 +33,38 @@ Content-Type: application/json
 }
 
 ###
-
 # удаление продукта +
 DELETE {{baseUrl}}/products/1/
 Content-Type: application/json
 
 ###
-
 # поиск продуктов по названию и описанию +
-GET {{baseUrl}}/products/?search=апе
+GET {{baseUrl}}/products/?q=апе
 Content-Type: application/json
 
 ###
-
-# создание склада
+# создание склада +
 POST {{baseUrl}}/stocks/
 Content-Type: application/json
 
 {
-  "address": "мой адрес не дом и не улица, мой адрес сегодня такой: www.ленинград-спб.ru3",
+  "address": "Moscow, Red Square",
   "positions": [
     {
       "product": 2,
-      "quantity": 250,
-      "price": 120.50
+      "quantity": 150,
+      "price": 220.50
     },
     {
-      "product": 3,
-      "quantity": 100,
-      "price": 180
+      "product": 4,
+      "quantity": 125,
+      "price": 130
     }
   ]
 }
 
 ###
-
-# обновляем записи на складе
+# обновляем записи на складе +
 PATCH {{baseUrl}}/stocks/4/
 Content-Type: application/json
 
@@ -83,7 +84,23 @@ Content-Type: application/json
 }
 
 ###
+# поиск складов, где есть определенный продукт +
+GET {{baseUrl}}/stocks/?products=4
+Content-Type: application/json
 
-# поиск складов, где есть определенный продукт
-GET {{baseUrl}}/stocks/?products=2
+
+###
+# поиск складов, где есть определенный продукт (поиск через текст) +
+GET {{baseUrl}}/stocks/?q=соч
+Content-Type: application/json
+
+
+###
+# получение складов +
+GET {{baseUrl}}/stocks/
+Content-Type: application/json
+
+###
+# получение складов постранично
+GET {{baseUrl}}/stocks/?page=1
 Content-Type: application/json
