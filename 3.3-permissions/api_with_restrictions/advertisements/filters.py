@@ -7,8 +7,8 @@ class AdvertisementFilter(filters.FilterSet):
     """Фильтры для объявлений."""
 
     # TODO: задайте требуемые фильтры
-    created_at = DateTimeFromToRangeFilter
+    created_at = DateTimeFromToRangeFilter()
 
     class Meta:
         model = Advertisement
-        fields = ["created_at", "status"]
+        fields = ["creator", "created_at", "status"]

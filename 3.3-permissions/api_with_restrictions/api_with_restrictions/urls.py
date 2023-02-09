@@ -17,11 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
-from advertisements.views import AdvertisementViewSet
+from advertisements.views import AdvertisementViewSet, AdvertisementFavoriteViewSet
 
 router = DefaultRouter()
 # TODO: подключите `AdvertisementViewSet`
-router.register('add', AdvertisementViewSet)
+router.register('add', AdvertisementViewSet, basename='myadv')
+router.register('favorite', AdvertisementFavoriteViewSet, basename='favorite')
 
 urlpatterns = [
     path('api/', include(router.urls)),

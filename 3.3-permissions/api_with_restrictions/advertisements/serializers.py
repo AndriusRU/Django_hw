@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from .models import Advertisement, AdvertisementStatusChoices
+from .models import Advertisement, AdvertisementStatusChoices, AdvertisementFavorite
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -12,6 +12,27 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'first_name',
                   'last_name',)
+
+
+class AdvertisementFavoriteSerializer(serializers.ModelSerializer):
+    """Serializer для избранных объявлений."""
+
+    user = UserSerializer(
+        read_only=True,
+    )
+
+    class Meta:
+        model = AdvertisementFavorite
+        fields = ('adv', 'user')
+
+    def create(self, validated_data):
+        validated_data["user"] = self.context["request"].user
+        return super().create(validated_data)
+
+    def validate(self, data):
+        if Advertisement.get_queryset().filter(id=data.get('adv')).creator == self.context["request"].user:
+            raise ValidationError('Добавить в избранное можно только чужое объявление !')
+        return data
 
 
 class AdvertisementSerializer(serializers.ModelSerializer):
