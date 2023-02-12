@@ -26,3 +26,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include(router.urls)),
 ]
+# pprint.pprint(router.get_urls())
